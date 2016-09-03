@@ -12,11 +12,12 @@ var outer = function(){
 // Invoke outer saving the return value into another variable called 'inner'.
 
 // Code Here
-
+var inner = outer();
 
 //Once you do that, invoke inner.
 
   //Code Here
+  inner();
 
 
 
@@ -36,6 +37,16 @@ var callFriend = function(){
 // Create a makeCall function that when invoked logs  'Calling Jake at 435-215-9248' in your console.
 
   //Code Here
+// function makeCall() {
+//   console.log('Calling Jake at 435-215-9248')
+// }
+function makeCall() {
+  var call = callFriend();
+  console.log(call(435-215-9248));
+}
+
+
+
 
 
 
@@ -52,13 +63,20 @@ var callFriend = function(){
 */
 
 //Code Here
+function makeCounter() {
+  var num = 0;
+  return function() {
+    return ++num;
+  }
+}
+
 
 //Uncomment this once you make your function
-//   var count = makeCounter();
-//   count(); // 1
-//   count(); // 2
-//   count(); // 3
-//   count(); // 4
+  var count = makeCounter();
+  count(); // 1
+  count(); // 2
+  count(); // 3
+  count(); // 4
 
 
 
@@ -74,12 +92,15 @@ var callFriend = function(){
 function counterFactory(value) {
 
   // Code here.
-
-
   return {
+    inc: function() {
+      return ++value;
+    },
+    dec: function() {
+      return --value;
+      }
+    };
   }
-}
-
 
 counter = counterFactory(10);
 
@@ -96,11 +117,13 @@ counter = counterFactory(10);
     var welcomeText = 'You\'re doing awesome, keep it up ';
 
     // code message function here.
-
+    function message() {
+      return welcomeText + firstname + " " + lastname + ".";
+    }
 
     //Uncommment this to return the value of your invoked message function
 
-    //return message()
+    return message()
   }
 
   motivation('Billy', 'Bob'); // 'Your doing awesome keep it up Billy Bob
@@ -127,12 +150,15 @@ counter = counterFactory(10);
 
     return {
       // Code here.
+      publicMethod: function() {
+      return privateMethod();
+      }
     };
 
   })();
 
-//Uncomment this after you create your public method
-//   module.publicMethod();
+// Uncomment this after you create your public method
+  module.publicMethod();
 
 
 
@@ -162,6 +188,34 @@ timeOutCounter();
 //////////////////PROBLEM 8////////////////////
 
 var funcArray = [];
+
+function addToArray() {
+  var tempArray = [];
+  var count = 0;
+
+  return function() {
+    return tempArray.push(count);
+    return count++;
+  }
+
+}
+
+
+// var funcArray = [];
+
+// function addToArray() {
+//   var tempArray = [];
+//   var count = 0;
+
+//   return function(i) {
+//     tempArray.push(count);
+//     count++;
+//     return tempArray;
+//   }
+
+// }
+
+
 
 /*
   Make the following code work
